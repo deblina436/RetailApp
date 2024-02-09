@@ -1,0 +1,57 @@
+package com.retail.retaildiscountapp;
+
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.retail.retaildiscountapp.controller.ItemDiscountController;
+import com.retail.retaildiscountapp.model.Product;
+import com.retail.retaildiscountapp.model.User;
+import com.retail.retaildiscountapp.service.DiscountService;
+
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ContextConfiguration()
+@ExtendWith(MockitoExtension.class)
+public class DiscountControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Mock
+    private DiscountService discountService;
+
+
+    @Test
+    public void testCalculateNetPayableAmount() throws Exception {
+
+        // Given
+      
+    	Product item = new Product("iPhone", 5000, 2);
+        User user = new User(false, false, 4, item);
+
+        
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/calculateDiscount")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(user)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("9000.0"));
+    }
+}
