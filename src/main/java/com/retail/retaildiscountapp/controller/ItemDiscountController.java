@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.retail.retaildiscountapp.exception.InvalidArgumentException;
-import com.retail.retaildiscountapp.model.User;
+import com.retail.retaildiscountapp.model.Order;
 import com.retail.retaildiscountapp.service.DiscountService;
 
 import jakarta.validation.Valid;
@@ -21,9 +20,9 @@ public class ItemDiscountController {
 	DiscountService discountService;
 	
 	@PostMapping("/calculateDiscount")
-	public ResponseEntity<Double> calculateNetPayableAmount(@Valid @RequestBody User user){
+	public ResponseEntity<Double> calculateNetPayableAmount(@Valid @RequestBody Order order){
 		
-		double netPayableAmount = discountService.calculateNetPayableAmount(user);
+		double netPayableAmount = discountService.calculateNetPayableAmount(order);
         return ResponseEntity.ok(netPayableAmount);
 		
 	}

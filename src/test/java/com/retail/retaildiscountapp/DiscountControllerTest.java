@@ -1,10 +1,10 @@
 package com.retail.retaildiscountapp;
 
-import static org.mockito.Mockito.when;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.retail.retaildiscountapp.controller.ItemDiscountController;
+import com.retail.retaildiscountapp.model.Order;
 import com.retail.retaildiscountapp.model.Product;
-import com.retail.retaildiscountapp.model.User;
 import com.retail.retaildiscountapp.service.DiscountService;
 
 
@@ -27,7 +26,7 @@ import com.retail.retaildiscountapp.service.DiscountService;
 @AutoConfigureMockMvc
 @ContextConfiguration()
 @ExtendWith(MockitoExtension.class)
-public class DiscountControllerTest {
+class DiscountControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,18 +39,21 @@ public class DiscountControllerTest {
 
 
     @Test
-    public void testCalculateNetPayableAmount() throws Exception {
+    void testCalculateNetPayableAmount() throws Exception {
 
-        // Given
-      
-    	Product item = new Product("iPhone", 5000, 2);
-        User user = new User(false, false, 4, item);
+    	List<Product> products = Arrays.asList(
+                new Product("tablet", 100, 2),
+                new Product("tv", 200, 1),
+                new Product("milk", 10, 3)
+        );
+
+        Order order = new Order("Deb123", products);
 
         
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/calculateDiscount")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(user)))
+                .content(objectMapper.writeValueAsString(order)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("9000.0"));
+                .andExpect(MockMvcResultMatchers.content().string("290.0"));
     }
 }

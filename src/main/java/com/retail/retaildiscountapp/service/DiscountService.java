@@ -1,11 +1,16 @@
 package com.retail.retaildiscountapp.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.retail.retaildiscountapp.discount.IDiscount;
+import com.retail.retaildiscountapp.model.IOrder;
 import com.retail.retaildiscountapp.model.IProduct;
 import com.retail.retaildiscountapp.model.IUser;
+import com.retail.retaildiscountapp.model.User;
 
 
 @Service
@@ -13,15 +18,24 @@ public class DiscountService {
 	
 	@Autowired
 	DiscountFactory discountFactory;
+	
+	@Autowired
+    private Map<String, User> users;
 
-	public double calculateNetPayableAmount(IUser user) {
-		IProduct item = user.getOrders();
-		double bill = item.getQuantity() * item.getPrice();
+	public double calculateNetPayableAmount(IOrder order) {
+		List<IProduct> orderList = order.getOrders();
+		String userId = order.getUserId();
+		IUser user = users.get(userId);
 		
-		IDiscount applicableDis = discountFactory.getDiscountForUser(user);
-		double discountAmount = applicableDis.calculateDiscount(bill);
+		double totalBill = 0.0;
 		
-        return bill - discountAmount - calculateHundredDollarDiscounts(bill);		
+		for (IProduct item : orderList) {
+			double bill = item.getQuantity() * item.getPrice();
+			IDiscount applicableDis = discountFactory.getDiscountForUser(item, user);
+			double discountAmount = applicableDis.calculateDiscount(bill);
+			totalBill+= bill - discountAmount - calculateHundredDollarDiscounts(bill);
+		}
+        return totalBill;	
 	}
 	
 
