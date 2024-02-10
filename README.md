@@ -81,3 +81,9 @@ Once the project is running, you can hit the POST endpoint http://localhost:8080
 
 ### Find the swagger UI -
 http://localhost:8080/swagger-ui/index.html
+
+### Static code analysis with Sonarlint
+![Package Structure](docs/images/sonarReport.png)
+
+### Code coverage with Jacoco
+![Package Structure](docs/images/jacocoReport.png)
