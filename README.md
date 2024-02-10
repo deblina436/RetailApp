@@ -45,7 +45,7 @@ A dataset has been created for user data and another set of product list which i
 ![Package Structure](docs/images/userData.png)
 ![Package Structure](docs/images/product.png)
 
-#Run the application
+### Run the application
 
 ### Build the project
 mvn clean package
