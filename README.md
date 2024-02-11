@@ -11,6 +11,7 @@ On a retail website, the following discounts apply:
 
 ### Solution
 This application expore a rest endpoint which takes userId and the list of orders in the request body and return the response to the user.
+```JSON
 {
     "userId": "Deb123",
     "orders": [
@@ -26,7 +27,7 @@ This application expore a rest endpoint which takes userId and the list of order
         }
     ]
 }
-
+```
 ### Class Diagram
 
 ![Package Structure](docs/images/retail.png)
@@ -45,7 +46,7 @@ A dataset has been created for user data and another set of product list which i
 ![Package Structure](docs/images/userData.png)
 ![Package Structure](docs/images/product.png)
 
-### Run the application
+
 
 ### Build the project
 mvn clean package
@@ -62,7 +63,7 @@ mvn spring-boot:run
 
 ### Using the API
 Once the project is running, you can hit the POST endpoint http://localhost:8080/api/v1/calculateDiscount with the following request body:
-
+```JSON
 {
     "userId": "Deb123",
     "orders": [
@@ -78,6 +79,7 @@ Once the project is running, you can hit the POST endpoint http://localhost:8080
         }
     ]
 }
+```
 
 ### Find the swagger UI -
 http://localhost:8080/swagger-ui/index.html
