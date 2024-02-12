@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+/**
+ * This class is to handle exceptions globally for the application
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

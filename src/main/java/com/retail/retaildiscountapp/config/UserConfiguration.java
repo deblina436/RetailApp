@@ -9,6 +9,10 @@ import com.retail.retaildiscountapp.model.User;
 @Configuration
 public class UserConfiguration {
 
+	 /**
+     *
+     * @return The static user dataset.
+     */
     @Bean
     public Map<String, User> initializeUsers() {
         Map<String, User> users = new HashMap<>();
@@ -19,7 +23,6 @@ public class UserConfiguration {
         users.put("Ravi90", new User("Ravi90", false, false, 5));
         users.put("Sai89", new User("Sai89", true, true, 2));
         users.put("Raj345", new User("Raj345", false, false, 1));
-        // Add more users as needed
 
         return users;
     }

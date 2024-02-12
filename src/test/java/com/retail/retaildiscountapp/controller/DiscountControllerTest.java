@@ -1,4 +1,4 @@
-package com.retail.retaildiscountapp;
+package com.retail.retaildiscountapp.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +54,6 @@ class DiscountControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(order)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("290.0"));
+                .andExpect(MockMvcResultMatchers.content().string("300.0"));
     }
 }

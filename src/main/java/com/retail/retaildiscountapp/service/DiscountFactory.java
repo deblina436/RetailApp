@@ -11,9 +11,18 @@ import com.retail.retaildiscountapp.model.IProduct;
 import com.retail.retaildiscountapp.model.IUser;
 import com.retail.retaildiscountapp.model.ProductType;
 
+/**
+ * This factory class will decide which discount to be applied on
+ */
 @Service
 public class DiscountFactory {
 
+	/**
+	 * This method is to determine the type of discount
+	 * an user is eligible for based on the userType and the product selected
+	 * 
+	 * @return the instance of the discount class
+	 */
 	IDiscount getDiscountForUser(IProduct product, IUser user) {
 		String name = product.getName();
 		if(product.getProductType(name)!=ProductType.GROCERIES) {

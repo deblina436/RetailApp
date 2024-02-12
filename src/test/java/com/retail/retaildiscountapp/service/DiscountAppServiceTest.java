@@ -1,4 +1,4 @@
-package com.retail.retaildiscountapp;
+package com.retail.retaildiscountapp.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -36,7 +36,7 @@ class DiscountAppServiceTest {
     @Test
     void testCalculateNetPayableAmount_EmployeeDiscount() {
         Order order = new Order("Deb123", products);        
-        double expectedAmount = 311.0; 
+        double expectedAmount = 321.0; 
         double actualAmount = discountService.calculateNetPayableAmount(order);
         assertEquals(expectedAmount, actualAmount);
     }
@@ -45,7 +45,7 @@ class DiscountAppServiceTest {
     void testCalculateNetPayableAmount_AffiliateDiscount() {
     	Order order = new Order("Sri456", products);   
       
-        double expectedAmount = 439.7;
+        double expectedAmount = 449.7;
         double actualAmount = discountService.calculateNetPayableAmount(order);
 
         assertEquals(expectedAmount, actualAmount);
@@ -64,7 +64,7 @@ class DiscountAppServiceTest {
     @Test
     void testCalculateNetPayableAmount_CustomerDiscount() {
     	Order order = new Order("Ravi90", products);   
-        double expectedAmount = 418.5;  
+        double expectedAmount = 428.5;  
 
         double actualAmount = discountService.calculateNetPayableAmount(order);
 

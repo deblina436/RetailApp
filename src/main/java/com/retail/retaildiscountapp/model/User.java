@@ -8,10 +8,10 @@ public class User implements IUser {
 	private String userId;
 	private boolean isEmployee;
 	private boolean isAffiliate;
-	private long memberSinceYears;
+	private int memberSinceYears;
 	
 	
-	public User(String userId, boolean isEmployee, boolean isAffiliate, long memberSinceYears) {
+	public User(String userId, boolean isEmployee, boolean isAffiliate, int memberSinceYears) {
 		this.userId = userId;
 		this.isEmployee = isEmployee;
 		this.isAffiliate = isAffiliate;
@@ -26,7 +26,7 @@ public class User implements IUser {
 		return isAffiliate;
 	}
 
-	public long getMemberSinceYears() {
+	public int getMemberSinceYears() {
 		return memberSinceYears;
 	}
 

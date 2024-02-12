@@ -36,9 +36,9 @@ This application expore a rest endpoint which takes userId and the list of order
 
 ### Additional features 
 
-User input validation 
-Error handling and displaying proper error messgae
-Swagger UI
+1. User input validation,
+2. Error handling and displaying proper error messgae,
+3. Swagger UI
 
 ### Assumptions 
 
@@ -56,6 +56,8 @@ mvn test
 
 ### Generate code coverage report
 mvn jacoco:report
+
+### 
 Reports will be generated \retail-discount-app\retail-discount-app\target\site\jacoco\index.html
 
 ### Run the project

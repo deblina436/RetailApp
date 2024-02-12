@@ -2,13 +2,15 @@ package com.retail.retaildiscountapp.exception;
 
 import java.util.Date;
 
+/**
+ * This class is to display the error message in proper format
+ */
 public class ErrorDetails {
 	private Date timestamp;
 	private String message;
 	private String details;
 	
 	public ErrorDetails(Date timestamp, String message, String details) {
-		super();
 		this.timestamp = timestamp;
 		this.message = message;
 		this.details = details;

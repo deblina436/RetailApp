@@ -4,5 +4,5 @@ public interface IUser {
 	
 	public boolean isEmployee();
 	public boolean isAffiliate();
-	public long getMemberSinceYears();	
+	public int getMemberSinceYears();	
 }
