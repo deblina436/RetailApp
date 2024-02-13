@@ -46,6 +46,8 @@ A dataset has been created for user data and another set of product list which i
 ![Package Structure](docs/images/userData.png)
 ![Package Structure](docs/images/product.png)
 
+###
+Considering this can be consumed as a service, I've created a rest endpoint instead of implementing CommandLineRunner and calculate the discounts.
 
 
 ### Build the project
